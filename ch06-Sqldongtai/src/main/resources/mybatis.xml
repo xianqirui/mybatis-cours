@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--指定protertres文件位置-->
+    <properties resource="jdbc.properties"/>
+    <!--控制全局行为-->
+    <settings>
+        <!--输出日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+    <!--配置插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor" />
+    </plugins>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.passwd}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!-- 映射文件位置,1.使用名字-->
+       <!--<mapper resource="org/example/dao/StudentDao.xml"/>-->
+        <!-- 映射文件位置,2.使用包名-->
+        <package name="org.example.dao"/>
+    </mappers>
+</configuration>
